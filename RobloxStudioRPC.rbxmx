@@ -1,0 +1,51 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Folder" referent="RBX3EB07909DFD24D8B8001C65A771F02D4">
+		<Properties>
+			<string name="Name">RobloxStudioRPC</string>
+			<BinaryString name="Tags"></BinaryString>
+		</Properties>
+		<Item class="Script" referent="RBXB04B0BAA1CA845BA9723600DD40C9DE8">
+			<Properties>
+				<bool name="Disabled">false</bool>
+				<Content name="LinkedSource"><null></null></Content>
+				<string name="Name">Main</string>
+				<string name="ScriptGuid">{E8D9811E-F620-4A1A-8589-B3E137814E20}</string>
+				<ProtectedString name="Source"><![CDATA[local HttpService = game:GetService("HttpService")
+local MarketplaceService = game:GetService("MarketplaceService")
+local PlaceId = game.PlaceId
+local ServerUrl = "http://localhost:52337"
+local ActivityInfo
+
+function UpdateRPC()
+	local Success, Res = pcall(HttpService.PostAsync, HttpService, ServerUrl, ActivityInfo)
+	if Success then
+		print("Updated rich presence.")
+	else
+		error("Failed to send activity information: " .. Res)
+	end
+end
+
+local EditingString = "Editing,%s"
+if PlaceId > 0 then
+	local Success, PlaceInfo = pcall(MarketplaceService.GetProductInfo, MarketplaceService, PlaceId)
+	if Success then
+		ActivityInfo = EditingString:format(PlaceInfo.Name)
+	else
+		error("Failed to fetch place information: " .. PlaceInfo)
+	end
+else
+	ActivityInfo = EditingString:format("Local Place")
+end
+UpdateRPC()
+
+plugin.Unloading:Connect(function()
+	ActivityInfo = "Idling"
+	UpdateRPC()
+end)]]></ProtectedString>
+				<BinaryString name="Tags"></BinaryString>
+			</Properties>
+		</Item>
+	</Item>
+</roblox>
