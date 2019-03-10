@@ -6,7 +6,7 @@ Discord Rich Presence for Roblox Studio.
 ## Installation
 ### Windows
 1. Clone or download this repo.
-2. Run install-deps.bat
+2. Run install-deps.bat and let the process finish.
 4. Run the server using run.bat
 5. Open Roblox Studio.
 6. Install [this plugin](https://www.roblox.com/library/2940205874/RobloxStudioRPC) or manually copy RobloxStudioRPC.rbxmx into %LocalAppData%\Roblox\Plugins
