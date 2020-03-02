@@ -1,5 +1,7 @@
 # RobloxStudioRPC
 Discord Rich Presence for Roblox Studio.
+## Warning
+This does not work correctly. Use at your own risk. I do not have any plans to update this.
 ## Requirements
 * [Node.js](https://nodejs.org/)
 * Discord desktop client
